@@ -27,7 +27,7 @@ int exists(int count, int i)
     return i <= count? 1 : 0;
 }
 
-void select(int **mat, int i)
+void selectRow(int **mat, int i)
 {
     printf("\nConjunto %d:: \n\n", i);
 
@@ -52,6 +52,18 @@ void insert(int **mat, int i)
     {
         printf("Informe o %d valor:: ", j);
         scanf("%d", &mat[i][j]);
+    }
+
+    printf("\n\n");
+}
+
+void deleteRow(int **mat, int i)
+{
+    printf("\n");
+
+    for (i; i <= MAX_N_SIZE; i++)
+    {
+        mat[i] = mat[i + 1];
     }
 
     printf("\n\n");
@@ -84,7 +96,7 @@ void service(int const opt, int **mat, int *count)
                 if (exists(*count, i))
                 {
                     insert(mat, i);
-                    select(mat, i);
+                    selectRow(mat, i);
                 }
                 else
                 {
@@ -93,7 +105,21 @@ void service(int const opt, int **mat, int *count)
             }
             break;
         case 3:
-            /* code */
+            {
+                int i = 0;
+                printf("Escolha o indice do conjunto a ser removido:: ");
+                scanf("%d", &i);
+
+                if (exists(*count, i))
+                {
+                    deleteRow(mat, i);
+                    selectRow(mat, i);
+                }
+                else
+                {
+                    printf("\nIndice inexistente\n\n");
+                }
+            }
             break;
         case 4:
             /* code */
@@ -109,7 +135,7 @@ void service(int const opt, int **mat, int *count)
 
                 if (exists(*count, i))
                 {
-                    select(mat, i);
+                    selectRow(mat, i);
                 }
                 else
                 {
